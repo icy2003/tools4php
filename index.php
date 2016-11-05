@@ -1,8 +1,8 @@
 <?php
 
-include 'Tree.php';
-//test
+//test script
 //Tree::orderTreeUpDown
+include 'Tree.php';
 
 $array = [
     ['id' => 1, 'pid' => 0, 'name' => '1'],
@@ -16,4 +16,12 @@ $array = [
     ['id' => 20, 'pid' => 1, 'name' => '6'],
     ['id' => 57, 'pid' => 54, 'name' => '7'],
 ];
+
 var_export(Tree::orderTreeUpDown($array));
+
+//Scroll::flushMessage
+include 'Scroll.php';
+
+$scroll = new Scroll();
+
+$scroll->flushMessage(range(0, 1000));
