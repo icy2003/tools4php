@@ -156,7 +156,7 @@ class Validator
         );
     }
 
-    private static function findOne($model, $where)
+    protected static function findOne($model, $where)
     {
         switch (VALIDATOR_FRAMEWORK) {
             case 'yii2':
