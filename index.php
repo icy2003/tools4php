@@ -1,7 +1,7 @@
 <?php
 
 //test script
-//Tree::orderTreeUpDown
+//--------------------Tree::orderTreeUpDown--------------------
 include 'Tree.php';
 
 $array = [
@@ -17,11 +17,30 @@ $array = [
     ['id' => 57, 'pid' => 54, 'name' => '7'],
 ];
 
-var_export(Tree::orderTreeUpDown($array));
+print_r(Tree::orderTreeUpDown($array));
 
-//Scroll::flushMessage
+//--------------------Scroll::flushMessage--------------------
 include 'Scroll.php';
 
 $scroll = new Scroll();
 
 $scroll->flushMessage(range(0, 1000));
+
+//--------------------Validator::rules--------------------
+include 'Validator.php';
+
+$rules = [
+    [['mobile' => '手机号', 'phone' => '移动电话'], Validator::VALIDATOR_MOBILE, '手机号格式不正确'],
+    [['createtime' => '时间', 'updatetime'], Validator::FILTER_FILTER, 'method' => 'strtotime',
+        'value' => 'now', 'isEmpty' => 'empty'],
+];
+
+$formData = [
+    'mobile' => '18888888888',
+    'phone' => '1322222222',
+    'createtime' => '2016-11-05',
+    'updatetime' => 0
+];
+define('DEBUG', true);
+$result = Validator::rules($formData, $rules);
+var_export($result);
