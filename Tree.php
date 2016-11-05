@@ -3,7 +3,6 @@
 /**
  * 树
  *
- * @namespace 
  * @filename Tree.php
  * @encoding UTF-8
  * @author forsona <2317216477@qq.com>
