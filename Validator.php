@@ -450,7 +450,7 @@ class Validator
         if (!is_callable($method)) {
             throw new Exception("参数method不是可调用的结构：" . var_export($method, true));
         }
-        $isEmpty = self::isEmpty($value, $rule);
+        $isEmpty = self::isEmpty(self::value($data, $field), $rule);
         return $keyExist && $isEmpty ? $value : $method($value);
     }
 
