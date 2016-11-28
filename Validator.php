@@ -54,7 +54,7 @@ class Validator
     const VALIDATOR_MATCH = 'match';
 
     /**
-     * 规则验证器
+     * 条件验证器
      *
      * 条件成立时验证
      *
