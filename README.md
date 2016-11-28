@@ -16,15 +16,36 @@ yii（2）上的工具倒是写了很多，所以……yii（2）之外呢？
 
 `orderTreeUpDown` 对结构为`id-pid`的树从上到下排序，得到的结果用于重新创建新的一棵树，只保证了父节点在前面，不是一层一层往下
 
+```
+$array = [
+    ['id' => 1, 'pid' => 0, 'name' => '1'],
+    ['id' => 59, 'pid' => 58, 'name' => '8'],
+    ['id' => 37, 'pid' => 1, 'name' => '2'],
+    ['id' => 54, 'pid' => 1, 'name' => '3'],
+    ['id' => 60, 'pid' => 59, 'name' => '10'],
+    ['id' => 35, 'pid' => 20, 'name' => '9'],
+    ['id' => 58, 'pid' => 1, 'name' => '4'],
+    ['id' => 11, 'pid' => 1, 'name' => '5'],
+    ['id' => 20, 'pid' => 1, 'name' => '6'],
+    ['id' => 57, 'pid' => 54, 'name' => '7'],
+];
+print_r(Tree::orderTreeUpDown($array));
+```
+
 ## Scroll
 
 滚屏工具
 
 `flushMessage` 滚屏输出一批文字，就跟批处理命令脚本一样>_<
 
+```
+$scroll = new Scroll();
+$scroll->flushMessage(range(0, 1000));
+```
+
 ## Validator
 
-`rules` 强大的验证类的入口函数，用以过滤表单字段，验证规则参照index.php的栗子，具体的用法参见每一个验证方法对应的常量
+`rules` 强大的验证类的入口函数，用以过滤表单字段，验证规则参照doc里类对应文档的栗子，具体的用法参见每一个验证方法对应的常量
 
 特点：
 
@@ -37,5 +58,45 @@ yii（2）上的工具倒是写了很多，所以……yii（2）之外呢？
 7. 以后可能会彻底从yii脱离出来（我自己写一些数据库相关的类），当然也可以继承重写`findOne`函数适应自己的项目
 8. 未来更多的特性~~~
 
-更多更具体的用法以后我会写文档 >_<
+```
+$rules = [
+    [['mobile' => '手机号', 'phone' => '移动电话'], Validator::VALIDATOR_MOBILE, '手机号格式不正确'],
+    [['createtime' => '时间', 'updatetime'], Validator::FILTER_FILTER, 'method' => 'strtotime',
+        'value' => 'now', 'isEmpty' => 'empty'],
+];
+$formData = [
+    'mobile' => '18888888888',
+    'phone' => '1322222222',
+    'createtime' => '2016-11-05',
+    'updatetime' => 0
+];
+define('DEBUG', true);
+$result = Validator::rules($formData, $rules);
+var_export($result);
+```
 
+## CURL类
+
+一个轻松调用CURL的类
+
+友好地支持get、post方法，以及支持自定义curl请求
+
+目前问题：
+
+- exec参数设置不友好，需要自己记住参数，参数设置上跟调用原生的并没有多少区别
+
+- 没有注释
+
+```
+$curl = new Curl();
+$baiduHtml = $curl->get('http://www.baidu.com');
+echo $baiduHtml;
+```
+
+
+<style>
+.markdown-body pre>code{
+    white-space: pre-wrap;
+    word-break:break-all;
+}
+</style>
