@@ -210,3 +210,11 @@ array( array( 'mobile' ), 'unset', 'method' => 'empty' )
 #### 2016.11.11
 
 - 修复默认值获取错误导致无法设置默认值的问题
+
+
+<style>
+.markdown-body pre>code{
+    white-space: pre-wrap;
+    word-break:break-all;
+}
+</style>
