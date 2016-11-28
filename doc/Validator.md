@@ -67,7 +67,7 @@ array( [field], [validator], [msg],... )
 
 验证器在返回false的时候会得到错误，true的时候通过
 
-#### mobile：手机验证器
+#### mobile 手机验证器
 
 为空时不做验证
 
@@ -83,7 +83,7 @@ array(
 或者是isEmpty => 'empty'
 ```
 
-#### email：邮箱验证器
+#### email 邮箱验证器
 
 为空时不做验证
 
@@ -97,7 +97,7 @@ array(
     )
 ```
 
-#### required：必填验证器
+#### required 必填验证器
 
 空时返回
 
@@ -110,7 +110,7 @@ array(
 )
 ```
 
-#### unique：唯一验证器
+#### unique 唯一验证器
 
 model（必填），attribute（必填），extra（选填）
 
@@ -124,7 +124,7 @@ array(
 )
 ```
 
-#### match：正则验证器
+#### match 正则验证器
 
 为空时不做验证
 
@@ -138,7 +138,7 @@ array(
 )
 ```
 
-#### rule：条件验证器
+#### rule 条件验证器
 
 使用filter过滤器处理函数
 
@@ -154,7 +154,7 @@ array(
 )
 ```
 
-#### in：列表验证器
+#### in 列表验证器
 
 list（必填），useStrict（选填）默认false，value（选填）有值时使用default过滤器设置默认值
 
@@ -168,7 +168,7 @@ array(
 效果等价与 in_array( 'type', array( 0, 1, 2 ), true )
 ```
 
-#### array：数组验证器
+#### array 数组验证器
 
 list（必填），当目标数组的键都在列表里或者数组为空时，验证通过
 
@@ -228,7 +228,7 @@ array(
     )
 ```
 
-#### set：赋值过滤器
+#### set 赋值过滤器
 
 直接设置值
 
