@@ -14,34 +14,15 @@ yii（2）上的工具倒是写了很多，所以……yii（2）之外呢？
 
 树操作
 
-`orderTreeUpDown` 对结构为`id-pid`的树从上到下排序，得到的结果用于重新创建新的一棵树，只保证了父节点在前面，不是一层一层往下
+`treeOrderUpDown` 对结构为id-pid的树重排，保证了排序后从头到尾创建节点，父节点一定已经创建
 
-```
-$array = [
-    ['id' => 1, 'pid' => 0, 'name' => '1'],
-    ['id' => 59, 'pid' => 58, 'name' => '8'],
-    ['id' => 37, 'pid' => 1, 'name' => '2'],
-    ['id' => 54, 'pid' => 1, 'name' => '3'],
-    ['id' => 60, 'pid' => 59, 'name' => '10'],
-    ['id' => 35, 'pid' => 20, 'name' => '9'],
-    ['id' => 58, 'pid' => 1, 'name' => '4'],
-    ['id' => 11, 'pid' => 1, 'name' => '5'],
-    ['id' => 20, 'pid' => 1, 'name' => '6'],
-    ['id' => 57, 'pid' => 54, 'name' => '7'],
-];
-print_r(Tree::orderTreeUpDown($array));
-```
+`treeResetName` 对结构为id-pid的树的名字按照层级重写，如节点2的父节点是节点1，节点1的是根节点，最终得到的节点2的名字是：节点1/节点2（分隔符取决于你，默认是/）
 
 ## Scroll
 
 滚屏工具
 
 `flushMessage` 滚屏输出一批文字，就跟批处理命令脚本一样>_<
-
-```
-$scroll = new Scroll();
-$scroll->flushMessage(range(0, 1000));
-```
 
 ## Validator
 
@@ -58,23 +39,6 @@ $scroll->flushMessage(range(0, 1000));
 7. 以后可能会彻底从yii脱离出来（我自己写一些数据库相关的类），当然也可以继承重写`findOne`函数适应自己的项目
 8. 未来更多的特性~~~
 
-```
-$rules = [
-    [['mobile' => '手机号', 'phone' => '移动电话'], Validator::VALIDATOR_MOBILE, '手机号格式不正确'],
-    [['createtime' => '时间', 'updatetime'], Validator::FILTER_FILTER, 'method' => 'strtotime',
-        'value' => 'now', 'isEmpty' => 'empty'],
-];
-$formData = [
-    'mobile' => '18888888888',
-    'phone' => '1322222222',
-    'createtime' => '2016-11-05',
-    'updatetime' => 0
-];
-define('DEBUG', true);
-$result = Validator::rules($formData, $rules);
-var_export($result);
-```
-
 ## CURL类
 
 一个轻松调用CURL的类
@@ -86,13 +50,6 @@ var_export($result);
 - exec参数设置不友好，需要自己记住参数，参数设置上跟调用原生的并没有多少区别
 
 - 没有注释
-
-```
-$curl = new Curl();
-$baiduHtml = $curl->get('http://www.baidu.com');
-echo $baiduHtml;
-```
-
 
 <style>
 .markdown-body pre>code{
